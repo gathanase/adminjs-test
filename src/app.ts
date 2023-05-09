@@ -30,22 +30,22 @@ const start = async () => {
       {
         resource: { model: Site, orm },
         options: {
-          id: "Site",
-          features: [
-            leafletSingleMarkerMapFeature({
-              componentLoader,
-              paths: {
-                mapProperty: 'location',
-                latitudeProperty: 'latitude',
-                longitudeProperty: 'longitude',
-              },
-              mapProps: {
-                center: [50, 10],
-                zoom: 4,
-              }
-            })
-          ]
-        }
+          id: "Site"
+        },
+        features: [
+          leafletSingleMarkerMapFeature({
+            componentLoader,
+            paths: {
+              mapProperty: 'location',
+              latitudeProperty: 'latitude',
+              longitudeProperty: 'longitude',
+            },
+            mapProps: {
+              center: [50, 10],
+              zoom: 4,
+            }
+          })
+        ]
       }
     ],
     assets: {
@@ -53,9 +53,7 @@ const start = async () => {
     },
   }
   const app = express()
-
   const admin = new AdminJS(adminOptions)
-
   const adminRouter = AdminJSExpress.buildRouter(admin)
   app.use(admin.options.rootPath, adminRouter)
   app.use(express.static("./node_modules/leaflet/dist"))
